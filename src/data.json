@@ -1,0 +1,54 @@
+[
+  {
+    "id": 2998,
+    "age": 18,
+    "first_name": "James",
+    "profile": "./assets/James.png",
+    "last_name": "Maria",
+    "city": "Tartu",
+    "phone_nb": "5116832",
+    "gender": "male",
+    "religion": "christian",
+    "date_of_birth": "02-09-2004",
+    "disability": "not recorded"
+  },
+  {
+    "id": 2999,
+    "age": 39,
+    "first_name": "Kevin",
+    "profile": "./assets/Kevin.png",
+    "last_name": "Smoop",
+    "city": "Pärnu",
+    "phone_nb": "5096731",
+    "gender": "male",
+    "religion": "not recorded",
+    "date_of_birth": "26-03-1983",
+    "disability": "not recorded"
+  },
+  {
+    "id": 3000,
+    "age": 24,
+    "first_name": "Marie",
+    "profile": "./assets/Marie.png",
+    "last_name": "Jane",
+    "city": "Tartu",
+    "phone_nb": "5225832",
+    "gender": "female",
+    "religion": "not recorded",
+    "date_of_birth": "27-09-1998",
+    "disability": "not recorded"
+  },
+  {
+    "id": 3001,
+    "age": 21,
+    "first_name": "Kadri",
+    "profile": "./assets/Kadri.png",
+    "last_name": "Simm",
+    "city": "Tartu",
+    "phone_nb": "5116832",
+    "gender": "male",
+    "religion": "not recorded",
+    "date_of_birth": "02-12-2001",
+    "disability": "Cerebral palsy"
+  }
+]
