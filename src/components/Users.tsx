@@ -1,23 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {MdOutlineMoreVert} from 'react-icons/md';
 import data from '../data.json';
+import {UsersContext} from "../Contexts/UsersContext";
 
 function Users() {
 
-    interface UserInterface {
-        id: number,
-        age: number,
-        first_name: string,
-        last_name: string,
-        city: string,
-        phone_nb: string,
-        gender: string,
-        religion: string,
-        date_of_birth: string,
-        disability: string
-    }
-
-    const [users, setUsers] = useState<UserInterface[]>([]);
+    const { users, setUsers } : any = useContext(UsersContext);
 
     useEffect(() => {
         handleUsers();
@@ -28,8 +16,8 @@ function Users() {
     }
 
     return (
-        <div className="w-full">
-            {users.map((details : any, index) => {
+        <div className="w-full h-1/2 overflow-y-scroll scroll-gray-500 scrollbar">
+            {users.map((details : any, index : number) => {
                 return(
                     <div className="w-full h-24 flex items-center text-md text-white border-b border-gray-700" key={index}>
                         <div className="w-1/4 flex items-center justify-center">
