@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react';
+import CreateNotification from "./CreateNotification";
 import {UsersContext} from "../Contexts/UsersContext";
 
 function CreateUserModal({handleCancel} : any) {
@@ -27,12 +28,14 @@ function CreateUserModal({handleCancel} : any) {
         disability: '',
     })
     const [validate, setValidate] = useState<boolean>();
+    const [toggleNotification, setNotification] = useState(false);
     const {users, setUsers} : any = useContext(UsersContext)
 
     const handleSave = () => {
         handleValidate();
         if (validate === false) {
             setUsers(users.concat(user));
+            setNotification(true);
         } else {
             return;
         }
@@ -54,6 +57,7 @@ function CreateUserModal({handleCancel} : any) {
 
     return (
         <div className="w-3/4 h-1/2 ml-auto mr-auto mt-6">
+            {toggleNotification ? <CreateNotification /> : null}
             <div className="flex h-16 justify-center items-center text-2xl">
                 {validate ? <h1 className="text-red-600 inline-block">Please fill all the fields before Saving user details</h1> :
                     <h1>Create New User</h1>}
