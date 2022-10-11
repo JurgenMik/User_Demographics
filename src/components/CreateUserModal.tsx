@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react';
-import CreateNotification from "./CreateNotification";
 import {UsersContext} from "../Contexts/UsersContext";
 
 function CreateUserModal({handleCancel} : any) {
@@ -28,16 +27,15 @@ function CreateUserModal({handleCancel} : any) {
         disability: '',
     })
     const [validate, setValidate] = useState<boolean>();
-    const [toggleNotification, setNotification] = useState(false);
+
     const {users, setUsers} : any = useContext(UsersContext)
 
     const handleSave = () => {
         handleValidate();
         if (validate === false) {
             setUsers(users.concat(user));
-            setNotification(true);
         } else {
-            return;
+            return null;
         }
     }
 
@@ -57,12 +55,11 @@ function CreateUserModal({handleCancel} : any) {
 
     return (
         <div className="w-3/4 h-1/2 ml-auto mr-auto mt-6">
-            {toggleNotification ? <CreateNotification /> : null}
             <div className="flex h-16 justify-center items-center text-3xl">
                 {validate ? <h1 className="text-red-600 inline-block">Please fill all the fields before Saving user details</h1> :
                     <h1>Create New User</h1>}
             </div>
-            <div className="w-full h-1/2 inline-block">
+            <div className="w-full h-1/2 my-4 flex flex-col justify-center">
                 <div className="space-y-8">
                     <input
                         type="text"
@@ -81,7 +78,7 @@ function CreateUserModal({handleCancel} : any) {
                     <input
                         type="text"
                         name="phone_nb"
-                        className="p-5 w-3/5 rounded-md border border-gray-500 mr-4"
+                        className="p-5 w-1/3 rounded-md border border-gray-500 ml-4"
                         placeholder="Phone Number"
                         onChange={handleChange}
                     />
@@ -95,7 +92,7 @@ function CreateUserModal({handleCancel} : any) {
                     <input
                         type="date"
                         name="date_of_birth"
-                        className="p-5 w-1/2 rounded-md border border-gray-500"
+                        className="p-5 w-1/3 rounded-md border border-gray-500 ml-4"
                         onChange={handleChange}
                     />
                 </div>
@@ -103,38 +100,38 @@ function CreateUserModal({handleCancel} : any) {
                     <input
                         type="text"
                         name="gender"
-                        className="p-5 w-1/4 rounded-md border border-gray-500 mr-4"
+                        className="p-5 w-1/5 rounded-md border border-gray-500 mr-4"
                         placeholder="Gender"
                         onChange={handleChange}
                     />
                     <input
                         type="text"
                         name="religion"
-                        className="p-5 w-1/4 rounded-md border border-gray-500 mr-4"
+                        className="p-5 w-1/5 rounded-md border border-gray-500 mr-4"
                         placeholder="Religion (none)"
                         onChange={handleChange}
                     />
                     <input
                         type="text"
                         name="city"
-                        className="p-5 w-1/4 rounded-md border border-gray-500"
+                        className="p-5 w-1/5 rounded-md border border-gray-500"
                         placeholder="City"
                         onChange={handleChange}
                     />
                     <input
                         type="text"
                         name="disability"
-                        className="p-5 w-3/5 rounded-md border border-gray-500"
+                        className="p-5 w-1/3 rounded-md border border-gray-500 ml-4"
                         placeholder="Disability"
                         onChange={handleChange}
                     />
                 </div>
             </div>
-            <div className="w-full flex justify-center mt-24 text-lg text-white space-x-8">
-                <button onClick={handleSave} className="p-3 px-16 bg-blue-600 rounded-md">
+            <div className="w-full mt-20 text-lg text-white">
+                <button onClick={handleSave} className="p-3 float-right px-10 bg-blue-600 rounded-md ml-4">
                     Save
                 </button>
-                <button onClick={handleCancel} className="p-3 px-16 bg-red-600 rounded-md">
+                <button onClick={handleCancel} className="p-3 float-right px-8 bg-red-600 rounded-md">
                     Cancel
                 </button>
             </div>
