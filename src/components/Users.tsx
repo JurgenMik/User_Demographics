@@ -1,9 +1,9 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useMemo} from 'react';
 import {MdOutlineMoreVert} from 'react-icons/md';
 import data from '../data.json';
 import {UsersContext} from "../Contexts/UsersContext";
 
-function Users({handleDetailView} : any) {
+function Users({handleDetailView, search} : any) {
 
     const { users, setUsers } : any = useContext(UsersContext);
 
@@ -15,9 +15,18 @@ function Users({handleDetailView} : any) {
         setUsers(data);
     }
 
+    const handleSearch = () => {
+        if (search.length === 0) {
+            return users;
+        }
+        return users.filter((user : any) => user.first_name.includes(search) || user.last_name.includes(search));
+    }
+
+    let searched = useMemo(handleSearch, [users, search]);
+
     return (
         <div className="w-full h-1/2 overflow-y-scroll scroll-gray-500 scrollbar">
-            {users.map((details : any, index : number) => {
+            {searched.map((details : any, index : number) => {
                 return(
                     <div className="w-full h-24 flex items-center text-md text-white border-b border-gray-700" key={index}>
                         <div className="w-1/4 flex items-center justify-center">
