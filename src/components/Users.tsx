@@ -3,7 +3,7 @@ import {MdOutlineMoreVert} from 'react-icons/md';
 import data from '../data.json';
 import {UsersContext} from "../Contexts/UsersContext";
 
-function Users() {
+function Users({handleDetailView} : any) {
 
     const { users, setUsers } : any = useContext(UsersContext);
 
@@ -24,7 +24,7 @@ function Users() {
                             <img
                                 className="w-14 h-14 rounded-full"
                                 src={details.profile}
-                                alt="profileImg"
+                                alt="profile"
                             />
                         </div>
                         <div className="w-3/4 flex space-x-6">
@@ -40,6 +40,7 @@ function Users() {
                         </div>
                         <MdOutlineMoreVert
                             className="text-xl hover:text-blue-400 mr-6"
+                            onClick={e => handleDetailView(e, details)}
                         />
                     </div>
                 )

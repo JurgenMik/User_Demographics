@@ -1,19 +1,8 @@
 import React, {useContext, useState} from 'react';
 import {UsersContext} from "../Contexts/UsersContext";
+import {UserInterface} from "../Interfaces/UserInterface";
 
 function CreateUserModal({handleCancel} : any) {
-
-    interface UserInterface {
-        age: number,
-        first_name: string,
-        last_name: string,
-        city: string,
-        phone_nb: string,
-        gender: string,
-        religion: string,
-        date_of_birth: string,
-        disability: string
-    }
 
     const [user, setUser] = useState<UserInterface>({
         age: 0,
@@ -25,10 +14,10 @@ function CreateUserModal({handleCancel} : any) {
         religion: '',
         date_of_birth: '',
         disability: '',
+        profile: '',
     })
     const [validate, setValidate] = useState<boolean>();
-
-    const {users, setUsers} : any = useContext(UsersContext)
+    const {users, setUsers} : any = useContext(UsersContext);
 
     const handleSave = () => {
         handleValidate();
