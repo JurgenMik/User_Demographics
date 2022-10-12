@@ -12,6 +12,7 @@ User Demographics
 * <strong>Search</strong> for users by first or last name
 ### Screenshots
 ![image](https://user-images.githubusercontent.com/89903354/195159376-5f1041fe-8403-4f05-9998-00cf4a19b794.png)
+![image](https://user-images.githubusercontent.com/89903354/195409181-3a44b166-3ed9-4ada-910a-8e995b01a3a4.png)
 ![image](https://user-images.githubusercontent.com/89903354/195159693-f42aaa94-d652-4f0a-9483-15ed82772b23.png)
 ![image](https://user-images.githubusercontent.com/89903354/195159859-26e26de9-c797-41cd-bd8c-fdd8117bb303.png)
 ![image](https://user-images.githubusercontent.com/89903354/195160061-d1a05e05-39c2-482a-a6cd-82ef8e8f9095.png)
