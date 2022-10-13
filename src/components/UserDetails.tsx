@@ -29,7 +29,7 @@ function UserDetails({info, setViewUser} : any) {
 
     return (
         <div className="w-3/4 h-1/2 ml-auto mr-auto mt-16 bg-slate-800 rounded-md">
-            <div className="w-full h-1/4 flex items-center ">
+            <div className="w-full h-1/4 flex items-center">
                 <div className="w-1/5 flex justify-center mt-2">
                     <img className="w-24 h-24 rounded-full" src={info.profile} alt="profileImg" />
                 </div>
@@ -52,11 +52,11 @@ function UserDetails({info, setViewUser} : any) {
                     </div>
                 </div>
                 <div className="w-2/5 flex justify-center space-x-6 text-lg text-white">
-                    <button onClick={handleEdit} className="p-2 px-10 bg-blue-600 rounded-md flex items-center">
+                    <button onClick={handleEdit} name="edit" className="p-2 px-10 bg-blue-600 rounded-md flex items-center">
                         <FaEdit />
                         Edit
                     </button>
-                    <button onClick={handleDelete} className="p-2 px-8 bg-red-600 rounded-md flex items-center">
+                    <button onClick={handleDelete} name="delete" className="p-2 px-8 bg-red-600 rounded-md flex items-center">
                         <MdDelete />
                         Delete
                     </button>

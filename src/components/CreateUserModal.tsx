@@ -14,7 +14,6 @@ function CreateUserModal({handleCancel} : any) {
         religion: '',
         date_of_birth: '',
         disability: '',
-        profile: '',
     })
     const [validate, setValidate] = useState<boolean>();
     const {users, setUsers} : any = useContext(UsersContext);
@@ -24,7 +23,7 @@ function CreateUserModal({handleCancel} : any) {
         if (validate === false) {
             setUsers(users.concat(user));
         } else {
-            return null;
+            return;
         }
     }
 
@@ -115,10 +114,10 @@ function CreateUserModal({handleCancel} : any) {
                     </div>
             </div>
             <div className="w-full mt-44 text-lg flex justify-center text-white space-x-6">
-                <button onClick={handleSave} className="p-2 px-10 bg-blue-600 rounded-md ml-4">
+                <button onClick={handleSave} name="save" className="p-2 px-10 bg-blue-600 rounded-md ml-4">
                     Save
                 </button>
-                <button onClick={handleCancel} className="p-2 px-8 bg-red-600 rounded-md">
+                <button onClick={handleCancel} name="cancel" className="p-2 px-8 bg-red-600 rounded-md">
                     Cancel
                 </button>
             </div>

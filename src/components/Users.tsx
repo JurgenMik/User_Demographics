@@ -26,7 +26,7 @@ function Users({handleDetailView, search} : any) {
 
     return (
         <div className="w-full h-1/2 overflow-y-scroll scroll-gray-500 scrollbar">
-            {searched.map((details : any, index : number) => {
+            {searched.map((details : any, index : any) => {
                 return(
                     <div className="w-full h-24 flex items-center text-md text-white border-b border-gray-700" key={index}>
                         <div className="w-1/4 flex items-center justify-center">
@@ -48,6 +48,7 @@ function Users({handleDetailView, search} : any) {
                             </h1>
                         </div>
                         <MdOutlineMoreVert
+                            id={index}
                             className="text-xl hover:text-blue-400 mr-6"
                             onClick={e => handleDetailView(e, details)}
                         />

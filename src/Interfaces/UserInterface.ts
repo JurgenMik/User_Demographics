@@ -8,5 +8,4 @@ export interface UserInterface {
     religion: string,
     date_of_birth: string,
     disability: string,
-    profile: string,
 }
