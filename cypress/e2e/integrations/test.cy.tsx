@@ -1,9 +1,11 @@
 /// <reference types="cypress" />
 // @ts-ignore
 
- describe('Test 1', () => {
+ describe('Tests for: Adding new user info, Deleting user info, and editing user info', () => {
+    beforeEach(() => {
+      cy.visit('localhost:3000');
+    })
     it('Creates a new user', () => {
-        cy.visit('localhost:3000');
 
         cy.get('button').should('contain', 'Add User').click();
 
@@ -49,37 +51,28 @@
 
         cy.get('div').should('contain.text', 'Silver').should('contain.text', 'Lipp');
     })
-})
+     it ('edits personal info of an existing user', () => {
 
- describe('Edit User', () => {
-    it ('edits personal info of an existing user', () => {
-        cy.visit('localhost:3000');
+         cy.get('[id="3"]').click();
 
-        cy.get('[id="3"]').click();
+         cy.get('input[name="phone_nb"]').clear();
 
-        cy.get('input[name="phone_nb"]').clear();
+         cy.get('input[name="phone_nb"]').type(
+             '5116834'
+         ).should('have.value', '5116834');
 
-        cy.get('input[name="phone_nb"]').type(
-            '5116834'
-        ).should('have.value', '5116834');
+         cy.get('button[name="edit"]').click();
 
-        cy.get('button[name="edit"]').click();
+         cy.get('[id="4"]').click();
 
-        cy.get('[id="4"]').click();
+         cy.get('[id="3"]').click().get('input[name="phone_nb"]').should('have.value', '5116834');
+     })
+     it ('Delete user', () => {
 
-        cy.get('[id="3"]').click().get('input[name="phone_nb"]').should('have.value', '5116834');
+         cy.get('[id="3"]').click();
 
-    })
-})
+         cy.get('button[name="delete"]').click();
 
- describe('Test 3', () => {
-    it ('Delete user', () => {
-        cy.visit('localhost:3000');
-
-        cy.get('[id="3"]').click();
-
-        cy.get('button[name="delete"]').click();
-
-        cy.get('[id="3"]').should('not.contain.text', 'Saluson');
-    })
+         cy.get('[id="3"]').should('not.contain.text', 'Saluson');
+     })
 })
