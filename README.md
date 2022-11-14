@@ -1,4 +1,7 @@
 User Demographics
+
+https://github.com/JurgenMik/U.Demographics_server
+
 ## Table of Contents
 * <strong>Overview</strong>
     * <strong>Functionality</strong>
@@ -19,4 +22,5 @@ User Demographics
 ### Built With
 * <strong>React</strong>
 * <strong>TypeScript</strong>
+* <strong>Node & MySQL</strong>
 * <strong>TailwindCSS - CSS framework</strong>

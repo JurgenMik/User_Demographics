@@ -1,8 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {FaEdit} from 'react-icons/fa';
 import {MdDelete} from 'react-icons/md';
-import {UserInterface} from "../Interfaces/UserInterface";
-import {UsersContext} from "../Contexts/UsersContext";
+import { UserInterface } from "../Interfaces/UserInterface";
+import { UsersContext } from "../Contexts/UsersContext";
+import axios from 'axios';
 
 function UserDetails({info, setViewUser} : any) {
 
@@ -18,12 +19,23 @@ function UserDetails({info, setViewUser} : any) {
     }
 
     const handleEdit = () => {
-        setUsers(users.filter((user : any) => user.id !== info.id).concat(editUser)
-            .sort((a : any , b : any) => a.id - b.id));
+        axios.put(`http://localhost:3000/user-info/${info.id}`, editUser)
+            .then(response => {
+                setUsers(users.filter((user : any) => user.id !== info.id).concat(response.data));
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const handleDelete = () => {
-        setUsers(users.filter((user : any) => user.id !== info.id));
+        axios.delete(`http://localhost:3000/user-info/${info.id}`)
+            .then(() => {
+                setUsers(users.filter((user : any) => user.id !== info.id));
+            })
+            .catch(error => {
+                console.log(error)
+            })
         setViewUser(false);
     }
 

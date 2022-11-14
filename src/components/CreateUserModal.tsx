@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {UsersContext} from "../Contexts/UsersContext";
 import {UserInterface} from "../Interfaces/UserInterface";
+import axios from 'axios';
 
 function CreateUserModal({handleCancel} : any) {
 
@@ -9,45 +10,33 @@ function CreateUserModal({handleCancel} : any) {
         first_name: '',
         last_name: '',
         city: '',
-        phone_nb: '',
+        phone_nb: 0,
         gender: '',
         religion: '',
         date_of_birth: '',
         disability: '',
     })
-    const [validate, setValidate] = useState<boolean>();
     const {users, setUsers} : any = useContext(UsersContext);
 
-    const handleSave = () => {
-        handleValidate();
-        if (validate === false) {
-            setUsers(users.concat(user));
-        } else {
-            return;
-        }
-    }
+    const handleSave = (e : React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    const handleValidate = () => {
-        Object.entries(user).map((property) => {
-            if (property[1].toString().length === 0) {
-                setValidate(true);
-            } else {
-                setValidate(false);
-            }
-        })
+        axios.post("http://localhost:3000/user-info", user)
+            .then(response => {
+                setUsers(users.concat(response.data));
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-       setUser({...user, [e.target.name] : e.target.value});
+       setUser({...user, [e.target.name] : e.target.valueAsNumber || e.target.value});
     }
 
     return (
         <div className="w-3/4 h-1/2 ml-auto mr-auto mt-6 rounded-md">
-            <div className="flex h-16 justify-center items-center text-3xl">
-                {validate ? <h1 className="text-red-600 inline-block">Please fill all the fields before Saving user details</h1> :
-                    <h1>Create New User</h1>}
-            </div>
-            <div className="w-full h-1/2 my-6 grid grid-cols-3 gap-4 justify-center ml-6">
+            <form onSubmit={handleSave} className="w-full h-1/2 my-6 grid grid-cols-3 gap-4 justify-center ml-6">
                 <div className="col-span-6 col-span-3 space-y-8">
                     <input
                         type="text"
@@ -64,7 +53,7 @@ function CreateUserModal({handleCancel} : any) {
                         onChange={handleChange}
                     />
                     <input
-                        type="text"
+                        type="number"
                         name="phone_nb"
                         className="p-4 w-1/3 rounded-md border border-gray-600 mr-4"
                         placeholder="Phone Number"
@@ -78,7 +67,7 @@ function CreateUserModal({handleCancel} : any) {
                         onChange={handleChange}
                     />
                     <input
-                        type="date"
+                        type="text"
                         name="date_of_birth"
                         className="p-4 w-1/4 rounded-md border border-gray-600"
                         onChange={handleChange}
@@ -111,16 +100,16 @@ function CreateUserModal({handleCancel} : any) {
                         placeholder="Disability"
                         onChange={handleChange}
                     />
-                    </div>
-            </div>
-            <div className="w-full mt-44 text-lg flex justify-center text-white space-x-6">
-                <button onClick={handleSave} name="save" className="p-2 px-10 bg-blue-600 rounded-md ml-4">
+                </div>
+                <div className="w-full mt-44 text-lg flex justify-center text-white space-x-6">
+                    <button name="save" className="p-2 px-10 bg-blue-600 rounded-md ml-4" type="submit">
                     Save
-                </button>
-                <button onClick={handleCancel} name="cancel" className="p-2 px-8 bg-red-600 rounded-md">
+                    </button>
+                    <button onClick={handleCancel} name="cancel" className="p-2 px-8 bg-red-600 rounded-md">
                     Cancel
-                </button>
-            </div>
+                    </button>
+                </div>
+            </form>
         </div>
     )
 }

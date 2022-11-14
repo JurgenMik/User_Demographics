@@ -1,7 +1,7 @@
 import React, {useEffect, useContext, useMemo} from 'react';
 import {MdOutlineMoreVert} from 'react-icons/md';
-import data from '../data.json';
 import {UsersContext} from "../Contexts/UsersContext";
+import axios from 'axios';
 
 function Users({handleDetailView, search} : any) {
 
@@ -12,7 +12,13 @@ function Users({handleDetailView, search} : any) {
     }, [])
 
     const handleUsers = () => {
-        setUsers(data);
+        axios.get("http://localhost:3000/user-info")
+            .then(response => {
+                setUsers(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+        })
     }
 
     const handleSearch = () => {

@@ -26,6 +26,7 @@ function App() {
 
     const handleDetailView = (e : React.MouseEvent<HTMLButtonElement>, details : any) => {
         setDetails(details);
+
         setViewUser(true);
         setCreateUser(false);
     }
