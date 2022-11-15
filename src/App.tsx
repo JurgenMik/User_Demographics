@@ -12,7 +12,9 @@ function App() {
     const [users, setUsers] = useState<UserInterface[]>([]);
     const [createUser, setCreateUser] = useState<boolean>(false);
     const [viewUser, setViewUser] = useState<boolean>(false);
-    const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState<object>({
+        query: '',
+    });
     const [userDetails, setDetails] = useState<UserInterface>();
 
     const handleCreate = () => {
@@ -40,7 +42,7 @@ function App() {
                     name="userSearch"
                     className="w-3/4 text-lg py-2 pl-1 bg-slate-800 border border-gray-600 rounded-lg"
                     placeholder="Search for a user..."
-                    onChange={e => setSearch(e.target.value)}
+                    onChange={e => setSearch({...search, query : e.target.value})}
                 />
             </div>
             <UsersContext.Provider value={{users, setUsers}}>

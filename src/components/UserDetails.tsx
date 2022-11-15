@@ -19,7 +19,7 @@ function UserDetails({info, setViewUser} : any) {
     }
 
     const handleEdit = () => {
-        axios.put(`http://localhost:3000/user-info/${info.id}`, editUser)
+        axios.put(`http://localhost:3001/user-info/${info.id}`, editUser)
             .then(response => {
                 setUsers(users.filter((user : any) => user.id !== info.id).concat(response.data));
             })
@@ -29,12 +29,12 @@ function UserDetails({info, setViewUser} : any) {
     }
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:3000/user-info/${info.id}`)
+        axios.delete(`http://localhost:3001/user-info/${info.id}`)
             .then(() => {
                 setUsers(users.filter((user : any) => user.id !== info.id));
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             })
         setViewUser(false);
     }

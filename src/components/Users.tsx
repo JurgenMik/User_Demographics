@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useMemo} from 'react';
+import React, {useState, useEffect, useContext, useMemo} from 'react';
 import {MdOutlineMoreVert} from 'react-icons/md';
 import {UsersContext} from "../Contexts/UsersContext";
 import axios from 'axios';
@@ -7,12 +7,14 @@ function Users({handleDetailView, search} : any) {
 
     const { users, setUsers } : any = useContext(UsersContext);
 
+    const [queryResult, setResult] = useState<object[]>([]);
+
     useEffect(() => {
         handleUsers();
     }, [])
 
     const handleUsers = () => {
-        axios.get("http://localhost:3000/user-info")
+        axios.get("http://localhost:3001/user-info")
             .then(response => {
                 setUsers(response.data);
             })
@@ -22,10 +24,18 @@ function Users({handleDetailView, search} : any) {
     }
 
     const handleSearch = () => {
-        if (search.length === 0) {
+        if (search.query.length === 0) {
             return users;
         }
-        return users.filter((user : any) => user.first_name.includes(search) || user.last_name.includes(search));
+        axios.get(`http://localhost:3001/user-info/search`, { params : search })
+            .then(response => {
+                setResult(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+        return queryResult;
     }
 
     let searched = useMemo(handleSearch, [users, search]);
