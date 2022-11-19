@@ -21,7 +21,7 @@ function CreateUserModal({handleCancel} : any) {
     const handleSave = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        axios.post("http://localhost:3001/user-info", user)
+        axios.post("https://localhost:3001/user-info", user)
             .then(response => {
                 setUsers(users.concat(response.data));
             })

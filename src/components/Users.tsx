@@ -14,7 +14,7 @@ function Users({handleDetailView, search} : any) {
     }, [])
 
     const handleUsers = () => {
-        axios.get("http://localhost:3001/user-info")
+        axios.get("https://localhost:3001/user-info")
             .then(response => {
                 setUsers(response.data);
             })
@@ -27,7 +27,7 @@ function Users({handleDetailView, search} : any) {
         if (search.query.length === 0) {
             return users;
         }
-        axios.get(`http://localhost:3001/user-info/search`, { params : search })
+        axios.get(`https://localhost:3001/user-info/search`, { params : search })
             .then(response => {
                 setResult(response.data);
             })
